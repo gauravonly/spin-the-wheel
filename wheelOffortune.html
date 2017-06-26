@@ -4,42 +4,751 @@
     <meta charset="utf-8">
     <title>Wheel of Fortune Bingo</title>
     <style type="text/css">
+    *{
+      -webkit-box-sizing: border-box;
+      box-sizing:border-box ;
+    }
+    @font-face {
+        font-family: 'Avenir-Medium';
+        src: url("https://d1e7veuf3koykl.cloudfront.net/static_files/files/000/000/002/original/Avenir-Medium.ttf?1494581917");
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      background:#f9f9f9;
+      width:100%;
+      height:100%;
+      font-family: 'Avenir-Medium',sans-serif;
+    }
     text{
-        font-family:Helvetica, Arial, sans-serif;
         font-size:11px;
         pointer-events:none;
+        display:block;
     }
+
+    .main-container{
+      display:inline-flex;
+      width:100%;
+      height:100%;
+      align-items: center;
+      justify-content: center;
+      max-width:1200px;
+    }
+
+    #header-text-responsive{
+        display:none;
+    }
+
     #chart{
-        position:absolute;
-        width:500px;
-        height:500px;
-        top:0;
-        left:0;
+        width:49%;
+        z-index:1;
+        /*border: 20px solid #ffffff;*/
+        /*height:500px;*/
     }
-    #question{
-        position: absolute;
-        width:400px;
-        height:500px;
-        top:0;
-        left:520px;
+
+    #offer{
+        width:49%;
+        height:100%;
+        min-height:525px;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction:column;
+        position:relative;
+        left:156px;
+        background:#ffffff;
+        z-index:0;
+        border-radius: 10px;
     }
-    #question h1{
-        font-size: 50px;
-        font-weight: bold;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        position: absolute;
-        padding: 0;
-        margin: 0;
-        top:50%;
-        -webkit-transform:translate(0,-50%);
-                transform:translate(0,-50%);
+
+    #offer .selected-message{
+        width:300px;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.23;
+        text-align: center;
+        color: #333333;
+        white-space: pre-wrap;      /* CSS3 */
+        white-space: -moz-pre-wrap; /* Firefox */
+        white-space: -pre-wrap;     /* Opera <7 */
+        white-space: -o-pre-wrap;   /* Opera 7 */
+        word-wrap: break-word;
     }
+
+    .header-text{
+      font-size:35px;
+      font-weight:bold;
+      color:#333333;
+      position: relative;
+      top: -40px;
+    }
+
+
+    .disclaimer-text{
+    }
+
+    @media only screen and (max-width: 450px)  and (min-width: 300px){
+        .main-container{
+          display:flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #header-text-responsive{
+          display:flex;
+          align-items: center;
+          justify-content:center;
+          height:80px;
+        }
+        .header-text{
+          display:none;
+        }
+        #chart{
+          display:flex;
+          justify-content: center;
+          width:133%;
+          order:1;
+        }
+        #offer{
+          width:100%;
+          position:static;
+          align-items: center;
+          order:2;
+          background:transparent;
+        }
+        svg{
+          transform:scale(0.6);
+        }
+    }
+
+
+    @media only screen and (max-width: 550px) and (min-width: 451px){
+        .main-container{
+          display:flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #header-text-responsive{
+          display:flex;
+          align-items: center;
+          justify-content:center;
+          height:80px;
+        }
+        .header-text{
+          display:none;
+        }
+        #chart{
+          display:flex;
+          justify-content: center;
+          width:100%;
+          order:1;
+        }
+        #offer{
+          position:static;
+          width:100%;
+          align-items: center;
+          order:2;
+          background:transparent;
+        }
+        svg{
+          transform:scale(0.6);
+        }
+    }
+
+    @media only screen and (max-width: 650px) and (min-width: 551px){
+        .main-container{
+          display:flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #header-text-responsive{
+          display:flex;
+          align-items: center;
+          justify-content:center;
+          height:80px;
+        }
+        .header-text{
+          display:none;
+        }
+        #chart{
+          display:flex;
+          justify-content: center;
+          width:100%;
+          order:1;
+        }
+        #offer{
+          position:static;
+          justify-content: center;
+          align-items: center;
+          width:100%;
+          order:2;
+          background:transparent;
+        }
+        svg{
+          transform:scale(0.7);
+        }
+    }
+
+    @media only screen and (max-width: 800px) and (min-width: 651px){
+        .main-container{
+          display:flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #header-text-responsive{
+          display:flex;
+          align-items: center;
+          justify-content:center;
+          height:80px;
+        }
+        .header-text{
+          display:none;
+        }
+        #chart{
+          display:flex;
+          justify-content: center;
+          width:100%;
+          order:1;
+        }
+        #offer{
+          position:static;
+          width:100%;
+          align-items: center;
+          order:2;
+          background:transparent;
+        }
+        svg{
+          transform:scale(0.8);
+        }
+    }
+
+    @media only screen and (max-width: 1100px) and (min-width: 801px){
+        .main-container{
+          display:flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #header-text-responsive{
+          display:flex;
+          align-items: center;
+          justify-content:center;
+          height:80px;
+        }
+        .header-text{
+          display:none;
+        }
+        #chart{
+          display:flex;
+          justify-content: center;
+          width:100%;
+          order:1;
+        }
+        #offer{
+          position:static;
+          width:100%;
+          align-items: center;
+          order:2;
+          background:transparent;
+        }
+    }
+
+
+    @keyframes blink{
+    0%, 49% {
+        fill: #ffffff;
+    }
+    50%, 100% {
+        fill: #a54d9d;
+    }
+    }
+
+    .outerbox{
+      width:258px;
+      height:78px;
+      background:#A54D9D;
+      border-radius: 8px;
+      padding: 14px;
+      position:relative;
+    }
+
+    .innerbox{
+      width:230px;
+      height:50px;
+      border-radius: 8px;
+      background: #ffdc4c;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stw-text{
+      width:100%;
+      font-size:24px;
+      font-weight: bold;
+      color:#333333;
+      text-align: center;
+    }
+
+    .even{
+      animation: blink1 1s ease-in infinite;
+    }
+
+    .odd{
+      animation: blink2 1s ease-in infinite;
+    }
+
+    @keyframes blink1{
+      0%,49%{
+        background: red;
+      }
+      50%,100%{
+        background: white;
+      }
+    }
+    @keyframes blink2{
+      0%,49%{
+        background: white;
+      }
+      50%,100%{
+        background: red;
+      }
+    }
+    .circle1{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 14px;
+      top: 4px;
+    }
+    .circle2{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 27px;
+      top: 4px;
+    }
+    .circle3{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 42px;
+      top: 4px;
+    }
+    .circle4{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 55px;
+      top: 4px;
+    }
+    .circle5{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 70px;
+      top: 4px;
+    }
+    .circle6{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 85px;
+      top: 4px;
+    }
+    .circle7{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 100px;
+      top: 4px;
+    }
+    .circle8{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 115px;
+      top: 4px;
+    }
+    .circle9{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 130px;
+      top: 4px;
+    }
+    .circle10{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 145px;
+      top: 4px;
+    }
+    .circle11{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 160px;
+      top: 4px;
+    }
+    .circle12{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 175px;
+      top: 4px;
+    }
+    .circle13{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 190px;
+      top: 4px;
+    }
+    .circle14{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 205px;
+      top: 4px;
+    }
+    .circle15{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 220px;
+      top: 4px;
+    }
+    .circle16{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 235px;
+      top: 4px;
+    }
+    .circle17{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background: white;
+      left: 248px;
+      top: 15px;
+    }
+    .circle18{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background: white;
+      left: 248px;
+      top: 30px;
+    }
+    .circle19{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background: white;
+      left: 248px;
+      top: 45px;
+    }
+    .circle20{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background: white;
+      left: 248px;
+      top: 60px;
+    }
+    .circle21{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 233px;
+      top: 68px;
+    }
+    .circle22{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 218px;
+      top: 68px;
+    }
+    .circle23{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 203px;
+      top: 68px;
+    }
+    .circle24{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 188px;
+      top: 68px;
+    }
+    .circle25{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 173px;
+      top: 68px;
+    }
+    .circle26{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 158px;
+      top: 68px;
+    }
+    .circle27{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 143px;
+      top: 68px;
+    }
+    .circle28{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 128px;
+      top: 68px;
+    }
+    .circle29{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 113px;
+      top: 68px;
+    }
+    .circle30{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 98px;
+      top: 68px;
+    }
+    .circle31{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 83px;
+      top: 68px;
+    }
+    .circle32{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 70px;
+      top: 68px;
+    }
+    .circle33{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 56px;
+      top: 68px;
+    }
+    .circle34{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 43px;
+      top: 68px;
+    }
+    .circle35{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 30px;
+      top: 68px;
+    }
+    .circle36{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 15px;
+      top: 68px;
+    }
+    .circle37{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 5px;
+      top: 60px;
+    }
+    .circle38{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 5px;
+      top: 45px;
+    }
+    .circle39{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 5px;
+      top: 30px;
+    }
+    .circle40{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      left: 5px;
+      top: 15px;
+    }
+
     </style>
 
 </head>
 <body>
+  <div class="main-container">
+    <div id="header-text-responsive">
+      <div class="outerbox">
+        <div class="circle1 odd"></div>
+        <div class="circle2 even"></div>
+        <div class="circle3 odd"></div>
+        <div class="circle4 even"></div>
+        <div class="circle5 odd"></div>
+        <div class="circle6 even"></div>
+        <div class="circle7 odd"></div>
+        <div class="circle8 even"></div>
+        <div class="circle9 odd"></div>
+        <div class="circle10 even"></div>
+        <div class="circle11 odd"></div>
+        <div class="circle12 even"></div>
+        <div class="circle13 odd"></div>
+        <div class="circle14 even"></div>
+        <div class="circle15 odd"></div>
+        <div class="circle16 even"></div>
+        <div class="circle17 odd"></div>
+        <div class="circle18 even"></div>
+        <div class="circle19 odd"></div>
+        <div class="circle20 even"></div>
+        <div class="circle21 odd"></div>
+        <div class="circle22 even"></div>
+        <div class="circle23 odd"></div>
+        <div class="circle24 even"></div>
+        <div class="circle25 odd"></div>
+        <div class="circle26 even"></div>
+        <div class="circle27 odd"></div>
+        <div class="circle28 even"></div>
+        <div class="circle29 odd"></div>
+        <div class="circle30 even"></div>
+        <div class="circle31 odd"></div>
+        <div class="circle32 even"></div>
+        <div class="circle33 odd"></div>
+        <div class="circle34 even"></div>
+        <div class="circle35 odd"></div>
+        <div class="circle36 even"></div>
+        <div class="circle37 odd"></div>
+        <div class="circle38 even"></div>
+        <div class="circle39 odd"></div>
+        <div class="circle40 even"></div>
+        <div class="innerbox ">
+          <span class="stw-text">SPIN THE WHEEL</span>
+        </div>
+      </div>
+    </div>
+    <div id="offer">
+      <div class="header-text">
+        <div class="outerbox">
+          <div class="circle1 odd"></div>
+          <div class="circle2 even"></div>
+          <div class="circle3 odd"></div>
+          <div class="circle4 even"></div>
+          <div class="circle5 odd"></div>
+          <div class="circle6 even"></div>
+          <div class="circle7 odd"></div>
+          <div class="circle8 even"></div>
+          <div class="circle9 odd"></div>
+          <div class="circle10 even"></div>
+          <div class="circle11 odd"></div>
+          <div class="circle12 even"></div>
+          <div class="circle13 odd"></div>
+          <div class="circle14 even"></div>
+          <div class="circle15 odd"></div>
+          <div class="circle16 even"></div>
+          <div class="circle17 odd"></div>
+          <div class="circle18 even"></div>
+          <div class="circle19 odd"></div>
+          <div class="circle20 even"></div>
+          <div class="circle21 odd"></div>
+          <div class="circle22 even"></div>
+          <div class="circle23 odd"></div>
+          <div class="circle24 even"></div>
+          <div class="circle25 odd"></div>
+          <div class="circle26 even"></div>
+          <div class="circle27 odd"></div>
+          <div class="circle28 even"></div>
+          <div class="circle29 odd"></div>
+          <div class="circle30 even"></div>
+          <div class="circle31 odd"></div>
+          <div class="circle32 even"></div>
+          <div class="circle33 odd"></div>
+          <div class="circle34 even"></div>
+          <div class="circle35 odd"></div>
+          <div class="circle36 even"></div>
+          <div class="circle37 odd"></div>
+          <div class="circle38 even"></div>
+          <div class="circle39 odd"></div>
+          <div class="circle40 even"></div>
+          <div class="innerbox ">
+            <div class="stw-text">SPIN THE WHEEL</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="selected-message"></div>
+      <div class="disclaimer-text">*All offers applicable on your next order.</div>
+    </div>
     <div id="chart"></div>
-    <div id="question"><h1></h1></div>
+  </div>
+
 
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
@@ -49,46 +758,167 @@
             r = Math.min(w, h)/2,
             rotation = 0,
             oldrotation = 0,
+            count = 0,
             picked = 100000,
-            oldpick = [],
-            color = d3.scale.category20();//category20c()
-            //randomNumbers = getRandomNumbers();
+            // oldpick = [],
+            color = d3.scale.ordinal()
+              .domain(['1','2','3','4','5','6','7','8'])
+              .range(['#ffd200','#ffc000','#ffb04c','#fa7f44','#f16521','#de5a40','#d22032','#d33646']);//category20c()
+            //randomNumbers = getRandomNumbers();['#fa7f44','#f16522','#de5a40','#d22032','#d22032','#e9b755','#f3994e','#f2d4a9']
 
 
         var data = [
-                    {"label":"Question 1",  "value":1,  "question":"What CSS property is used for specifying the area between the content and its border?"}, // padding
-                    {"label":"Question 2",  "value":1,  "question":"What CSS property is used for changing the font?"}, //font-family
-                    {"label":"Question 3",  "value":1,  "question":"What CSS property is used for changing the color of text?"}, //color
-                    {"label":"Question 4",  "value":1,  "question":"What CSS property is used for changing the boldness of text?"}, //font-weight
-                    {"label":"Question 5",  "value":1,  "question":"What CSS property is used for changing the size of text?"}, //font-size
-                    {"label":"Question 6",  "value":1,  "question":"What CSS property is used for changing the background color of a box?"}, //background-color
-                    {"label":"Question 7",  "value":1,  "question":"Which word is used for specifying an HTML tag that is inside another tag?"}, //nesting
-                    {"label":"Question 8",  "value":1,  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
+                    {"label":"1 Flat 15% Off",  "value":1,  "offer":"You have got Flat 15% Off"}, // padding
+                    {"label":"2 5% Off on Munchies",  "value":1,  "offer":"You have got 5% Off on Munchies"}, //font-family
+                    {"label":"3 Free Dessert",  "value":1,  "offer":"You have got Free Dessert"}, //color
+                    {"label":"4 Buy 2 Get 1 Free",  "value":1,  "offer":"You have got Buy 2 Get 1 Free"}, //font-weight
+                    {"label":"5 Better luck, next time!",  "value":1,  "offer":"You have got Better luck, next time!"}, //font-size
+                    {"label":"6 Free Beverage",  "value":1,  "offer":"You have got Free Beverage"}, //background-color
+                    {"label":"7 Buy 1 Get 1 Free",  "value":1,  "offer":"You have got Buy 1 Get 1 Free"}, //nesting
+                    {"label":"8 Credit 50 Brownie Point",  "value":1,  "offer":"You have got Credit 50 Brownie Point"} //bottom
         ];
 
 
         var svg = d3.select('#chart')
             .append("svg")
             .data([data])
-            .attr("width",  w + padding.left + padding.right)
-            .attr("height", h + padding.top + padding.bottom);
+            .attr("width",  w + padding.left + padding.right + 80)
+            .attr("height", h + padding.top + padding.bottom + 80);
+
+        var defs = svg.append("defs");
+
+        // create filter with id #drop-shadow
+        // height=130% so that the shadow is not clipped
+        var filter = defs.append("filter")
+            .attr("id", "drop-shadow")
+            .attr("height", "130%");
+
+        filter.append("feColorMatrix")
+            .attr("in", "SourceAlpha")
+            .attr("type", "saturate")
+            .attr("values", "0.25");
+
+        // SourceAlpha refers to opacity of graphic that this filter will be applied to
+        // convolve that with a Gaussian with standard deviation 3 and store result
+        // in blur
+        filter.append("feGaussianBlur")
+            .attr("in", "SourceAlpha")
+            .attr("stdDeviation", 5)
+            .attr("result", "blur");
+
+        // translate output of Gaussian blur to the right and downwards with 2px
+        // store result in offsetBlur
+        filter.append("feOffset")
+            .attr("in", "blur")
+            .attr("dx", 5)
+            .attr("dy", 5)
+            .attr("result", "offsetBlur");
+
+        // overlay original SourceGraphic over translated blurred opacity by using
+        // feMerge filter. Order of specifying inputs is important!
+        var feMerge = filter.append("feMerge");
+
+        feMerge.append("feMergeNode")
+            .attr("in", "offsetBlur")
+        feMerge.append("feMergeNode")
+            .attr("in", "SourceGraphic");
+
+
+            // create filter with id #drop-shadow for selected slice
+            // height=130% so that the shadow is not clipped
+
+            var filter_slice = defs.append("filter")
+                .attr("id", "drop-shadow-selected-slice")
+                .attr("height", "130%");
+
+            filter_slice.append("feColorMatrix")
+                .attr("in", "SourceAlpha")
+                .attr("type", "saturate")
+                .attr("values", "0.25");
+
+            // SourceAlpha refers to opacity of graphic that this filter will be applied to
+            // convolve that with a Gaussian with standard deviation 3 and store result
+            // in blur
+            filter_slice.append("feGaussianBlur")
+                .attr("in", "SourceAlpha")
+                .attr("stdDeviation", 10)
+                .attr("result", "blur");
+
+            // translate output of Gaussian blur to the right and downwards with 2px
+            // store result in offsetBlur
+            filter_slice.append("feOffset")
+                .attr("in", "blur")
+                .attr("dx", 0.5)
+                .attr("dy", 0.5)
+                .attr("result", "offsetBlur");
+
+            // overlay original SourceGraphic over translated blurred opacity by using
+            // feMerge filter. Order of specifying inputs is important!
+            var feMerge_slice = filter_slice.append("feMerge");
+
+            feMerge_slice.append("feMergeNode")
+                .attr("in", "offsetBlur")
+            feMerge_slice.append("feMergeNode")
+                .attr("in", "SourceGraphic");
+
+          // filter for inner-circle
+          var filter_inner_circle = defs.append("filter")
+              .attr("id", "drop-shadow-inner-circle")
+              .attr("height", "120%");
+
+          filter_inner_circle.append("feColorMatrix")
+              .attr("in", "SourceAlpha")
+              .attr("type", "saturate")
+              .attr("values", "0.25");
+
+          // SourceAlpha refers to opacity of graphic that this filter will be applied to
+          // convolve that with a Gaussian with standard deviation 3 and store result
+          // in blur
+          filter_inner_circle.append("feGaussianBlur")
+              .attr("in", "SourceAlpha")
+              .attr("stdDeviation", 5)
+              .attr("result", "blur");
+
+          // translate output of Gaussian blur to the right and downwards with 2px
+          // store result in offsetBlur
+          filter_inner_circle.append("feOffset")
+              .attr("in", "blur")
+              .attr("dx", 1)
+              .attr("dy", 1)
+              .attr("result", "offsetBlur");
+
+          // overlay original SourceGraphic over translated blurred opacity by using
+          // feMerge filter. Order of specifying inputs is important!
+          var feMerge_inner_circle = filter_inner_circle.append("feMerge");
+
+          feMerge_inner_circle.append("feMergeNode")
+              .attr("in", "offsetBlur")
+          feMerge_inner_circle.append("feMergeNode")
+              .attr("in", "SourceGraphic");
 
         var outercontainer = svg.append("g")
             .attr("class", "chartholder-outer")
-            .attr("transform", "translate(" + (w/2 + padding.left) + "," + (h/2 + padding.top) + ")");
+            .attr("transform", "translate(" + (w/2 + padding.left+30) + "," + ((h/2) + padding.top ) + ")")
+            .style("fill-opacity","0.8");
+
+      outercontainer.append("circle")
+           .attr("cx", 31)
+           .attr("cy", 31)
+           .attr("r", 300)
+           .style({"fill":"#ffffff","cursor":"pointer"});
 
         outercontainer.append("circle")
-             .attr("cx", 0)
-             .attr("cy", 0)
-             .attr("r", 250)
-             .style({"fill":"#efefef","cursor":"pointer"});
+             .attr("cx", 31)
+             .attr("cy", 31)
+             .attr("r", 257)
+             .style({"fill":"#a54d9d","cursor":"pointer","filter": "url(#drop-shadow)"});
+
+
 
 
         var container = svg.append("g")
             .attr("class", "chartholder")
-            .attr("transform", "translate(" + (w/2 + padding.left) + "," + (h/2 + padding.top) + ")");
-
-
+            .attr("transform", "translate(" + (w/2 + padding.left+61) + "," + (h/2 + padding.top+31) + ")");
 
         var vis = container
             .append("g");
@@ -98,118 +928,207 @@
         // declare an arc generator function
         var arc = d3.svg.arc().outerRadius(r);
 
-        // select paths, use arc generator to draw
-        var arcs = vis.selectAll("g.slice")
-            .data(pie)
-            .enter()
-            .append("g")
-            .attr("class", "slice");
+        createArcs();
 
 
-        arcs.append("path")
-            .attr("fill", function(d, i){ return color(i); })
-            .attr("d", function (d) { return arc(d); });
+        function createArcs(){
 
-        // add the text
-        arcs.append("text").attr("transform", function(d){
-                d.innerRadius = 0;
-                d.outerRadius = r;
-                d.angle = (d.startAngle + d.endAngle)/2;
-                return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius -10) +")";
-            })
-            .attr("text-anchor", "end")
-            .text( function(d, i) {
-                return data[i].label;
-            });
+          console.log('reached create arc');
+          // select paths, use arc generator to draw
+          var arcs = vis.selectAll("g.slice")
+              .data(pie)
+              .enter()
+              .append("g")
+              .attr("class", "slice");
 
-        container.on("click", spin);
+          arcs.append("path")
+              .attr("fill", function(d, i){
+                return color(i); })
+              // .attr("stroke","#ffffff")
+              .attr("d", function (d) { return arc(d); });
 
+          // add the text
+          arcs.append("text").attr("transform", function(d){
+                  d.innerRadius = 0;
+                  d.outerRadius = r;
+                  d.angle = (d.startAngle + d.endAngle)/2;
+                  return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius -10) +")";
+              })
+              .attr("text-anchor", "end")
+              .text( function(d, i) {
+                  return data[i].label;
+              })
+              .style({"font-size":"14px","font-weight":"bold"});
+        };
+
+        function randomNumber(minimum, maximum){
+            return Math.round( Math.random() * (maximum - minimum) + minimum);
+        }
 
         function spin(d){
+            rotation = 0;
+            count++;
+            if(count > 3){
+              alert('Please try again after n orders');
+              return;
+            }
+            if(picked !== 100000){
+              console.log('reached contains picked',picked,color[picked]);
+              d3.selectAll("g.slice path")
+                  .attr("fill-opacity","1");
+              d3.select(".slice:nth-child(" + (picked + 1) + ") path")
+                  .attr("fill", function(d, i){
+                    return color(picked); })
+                    .attr("stroke","none")
+                    .attr("filter","none");
 
-            container.on("click", null);
+              d3.select(".inner-circle")
+                  .attr("style","fill: #ffffff;cursor:pointer;");
+
+              d3.select(".inner-circle-text-1")
+                  .transition()
+                  .style("fill","#000000");
+
+              d3.select(".inner-circle-text-2")
+                  .transition()
+                  .style("fill","#000000");
+            }
+
+            createArcs();
+            new_container.on("click", null);
 
             //all slices have been seen, all done
-            console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
+            // console.log("OldPick, Data length: " , oldpick,data);
             // if(oldpick.length == data.length){
             //     console.log("done");
-            //     container.on("click", null);
+            //     new_container.on("click", null);
             //     return;
             // }
 
             var  ps       = 360/data.length,
-                 pieslice = Math.round(1440/data.length),
-                 rng      = Math.floor((Math.random() * 1440) + 360);
+                 pieslice = Math.round(1440/data.length);
+                //  rng      = Math.floor((Math.random() * 1440));
 
-            rotation = (Math.round(rng / ps) * ps);
 
-            picked = Math.round(data.length - (rotation % 360)/ps);
-            picked = picked >= data.length ? (picked % data.length) : picked;
+            // picked = Math.round(data.length - (rotation % 360)/ps);
+            // picked = picked >= data.length ? (picked % data.length) : picked;
+            picked = randomNumber(0,6);
+            rotation =  7200 - (picked+1) * ps + 120;
+            console.log('ps, pieslice, rotation, picked',ps,pieslice,rotation,picked);
 
 
             // if(oldpick.indexOf(picked) !== -1){
-            //     d3.select(this).call(spin);
+            //     spin();
             //     return;
             // } else {
             //     oldpick.push(picked);
             // }
 
-            rotation += 90 - Math.round(ps/2);
+            // rotation += 90 - Math.round(ps/2);
+            console.log('dsdasd',90 - Math.round(ps/2));
+
+            console.log('new rotation',rotation);
 
             vis.transition()
                 .duration(3000)
                 .attrTween("transform", rotTween)
                 .each("end", function(){
 
-                    // //mark question as seen
-                    // d3.select(".slice:nth-child(" + (picked + 1) + ") path")
-                    //     .attr("fill", "#111");
+                    // //mark offer as seen
+                    var arcs = vis.selectAll("g.slice path");
+                    arcs.transition()
+                    arcs.attr("fill-opacity", "0.5");
 
-                    //populate question
-                    d3.select("#question h1")
-                        .text(data[picked].question);
+                    d3.select(".slice:nth-child(" + (picked + 1) + ") path")
+                        .transition()
+                        .attr("fill-opacity","1")
+                        .attr("fill", "#a54d9d")
+                        .attr("stroke","#ffffff")
+                        .attr("filter","url(#drop-shadow-selected-slice)");
+
+
+                    d3.select(".inner-circle")
+                        .transition()
+                        .attr("style","fill: #a54d9d;cursor:pointer;");
+
+                    d3.select(".inner-circle-text-1")
+                        .transition()
+                        .text("Try")
+                        .style("fill","#ffffff");
+
+                    d3.select(".inner-circle-text-2")
+                        .transition()
+                        .text("Again")
+                        .style("fill","#ffffff");
+                    //populate offer
+
+                    // populate selcted message if it is an array
+
+                    // var selected_offer_message_length =  data[picked].offer.length;
+                    // for(var j=0; j<selected_offer_message_length;j++){
+                    //   d3.select("#offer .selected-message")
+                    //       .append("text")
+                    //       .attr("class","selected-message-list")
+                    //       .text(data[picked].offer);
+                    // }
+
+                    d3.select("#offer .selected-message")
+                        .text(data[picked].offer);
 
                     oldrotation = rotation;
 
-                    container.on("click", spin);
+                    new_container.on("click", spin);
                 });
         }
 
         //make arrow
         svg.append("g")
-            .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
+            .attr("transform", "translate(" + (w + padding.left + padding.right + 51) + "," + ((h/2)+padding.top+31) + ")")
             .append("path")
-            .attr("d", "M-" + (r*.15) + ",0L0," + (r*.05) + "L0,-" + (r*.05) + "Z")
-            .style({"fill":"black"});
+            .attr("d", "M-" + (r*.20) + ",0L0," + (r*.08) + "L0,-" + (r*.08) + "Z")
+            .style({"fill":"#a54d9d","stroke":"#ffffff","stroke-width":"4"});
 
         //draw spin circle
        var new_container = container.append("g");
        new_container.append("circle")
             .attr("cx", 0)
             .attr("cy", 0)
-            .attr("r", 35)
+            .attr("r", 45)
             .style({"fill":"white","cursor":"pointer"});
 
       new_container.append("circle")
            .attr("cx", 0)
            .attr("cy", 0)
-           .attr("r", 30)
-           .style({"fill":"grey","cursor":"pointer"});
-
+           .attr("r", 40)
+           .attr("class","inner-circle")
+           .attr("filter","url(#drop-shadow-inner-circle)")
+           .style({"fill":"#ffffff","cursor":"pointer", "animation": "blink 1s infinite"});
+      // click on to spin the wheel
+      new_container.on("click", spin);
 
         //spin text
-        new_container.append("text")
-            .attr("x", 0)
-            .attr("y", 10)
-            .attr("text-anchor", "middle")
-            .text("SPIN")
-            .style({"font-weight":"bold", "font-size":"20px"});
+      new_container.append("text")
+          .attr("x", -2)
+          .attr("y", 0)
+          .attr("text-anchor", "middle")
+          .attr("class", "inner-circle-text-1")
+          .text("Press")
+          .style({"font-weight":"bold", "font-size":"15px","fill":"#000000"});
+
+      new_container.append("text")
+          .attr("x", 3)
+          .attr("y", 18)
+          .attr("text-anchor", "middle")
+          .attr("class", "inner-circle-text-2")
+          .text("& Win *")
+          .style({"font-weight":"bold", "font-size":"15px","fill":"#000000"});
+
 
 
         function rotTween(to) {
           var i = d3.interpolate(oldrotation % 360, rotation);
           return function(t) {
-            return "rotate(" + i(t) + ")";
+            return "rotate(" + i(((t *= 2) <= 1 ? Math.pow(2, 10 * t - 10) : 2 - Math.pow(2, 10 - 10 * t)) / 2) + ")";
           };
         }
 
